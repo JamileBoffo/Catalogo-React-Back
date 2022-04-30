@@ -1,0 +1,315 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API RedDragon",
+    "description": "API para CRUD de poções",
+    "termsOfService": "",
+    "contact": {
+      "email": "jamileboffo@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3333/potions",
+      "description": "API de teste"
+    },
+    {
+      "url": "https://api-elgeladon.herokuapp.com/potions",
+      "description": "API de produção"
+    }
+  ],
+  "paths": {
+    "/all-potions": {
+      "get": {
+        "summary": "Lista de todas as poções",
+        "description": "Rota responsável por listar todas as poções",
+        "tags": ["Potions"],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Potions"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/potion/{id}": {
+      "get": {
+        "summary": "Busca uma poção pelo ID",
+        "description": "Rota responsável por buscar uma poção pelo ID",
+        "tags": ["Potions"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da poção para a busca",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Potions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/create-potion": {
+      "post": {
+        "summary": "Cadastrar uma poção",
+        "description": "Rota responsável por cadastrar uma poção",
+        "tags": ["Potions"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Potions"
+              },
+              "examples": {
+                "Potions": {
+                  "value": {
+                    "nome": "Poção Amortentia",
+                    "descricao": "Poção mais perigosa que existe, porque pode levar a pessoa que a bebeu a fazer loucuras pela paixão obsessiva.",
+                    "img": "assets/img/amortentia.png",
+                    "valor": 150
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Potion"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update-potion/{id}": {
+      "put": {
+        "summary": "Editar uma poção pelo ID",
+        "description": "Rota responsável por editar uma poção pelo ID",
+        "tags": ["Potions"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da poção para a busca",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Potions"
+              },
+              "examples": {
+                "Potions": {
+                  "value": {
+                    "nome": "Poção do Morto-Vivo",
+                    "descricao": "Faz com que aquele que a beber mergulhe num sono profundo que pode durar indefinidamente.",
+                    "img": "assets/img/mortovivo.png",
+                    "valor": 120
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Potions"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/delete-potion/{id}": {
+      "delete": {
+        "summary": "Apagar uma poção pelo ID",
+        "description": "Rota responsável por apagar uma poção pelo ID",
+        "tags": ["Potions"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id da poção para deleção",
+            "required": true
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/all-carrinho": {
+      "get": {
+        "summary": "Lista de todos os itens do carrinho",
+        "description": "Rota responsável por listar todos os itens do carrinho",
+        "tags": ["Carrinho"],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Carrinho"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/create-carrinho": {
+      "post": {
+        "summary": "Cadastrar vários itens no carrinho",
+        "description": "Rota responsável por cadastrar vários itens no carrinho",
+        "tags": ["Carrinho"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Carrinho"
+              },
+              "examples": {
+                "Carrinho": {
+                  "value": [
+                    {
+                      "movieId": "624230fdcd38269205c82197",
+                      "quantidade": 5
+                    },
+                    {
+                      "movieId": "62423c1e618f4a4738a5ee75",
+                      "quantidade": 2
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Carrinho"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/finish-carrinho": {
+      "delete": {
+        "summary": "Apagar todos os itens do carrinho",
+        "description": "Rota responsável por apagar todos os itens do carrinho",
+        "tags": ["Carrinho"],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "movies": {
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string"
+          },
+          "sinopse": {
+            "type": "string"
+          },
+          "img": {
+            "type": "string"
+          },
+          "ano": {
+            "type": "number"
+          }
+        }
+      },
+      "Carrinho": {
+        "type": "object",
+        "properties": {
+          "movieId": {
+            "type": "string"
+          },
+          "quantidade": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
