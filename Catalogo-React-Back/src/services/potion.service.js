@@ -1,4 +1,5 @@
-import potion from '../models/potion.js';
+import {potion} from '../models/potion.js';
+const texto = 'oi'
 
 
 export const findAllPotionsService = async () => {

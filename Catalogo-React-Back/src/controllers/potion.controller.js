@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 import { validId, validObjectBody } from '../middlewares/potion.middleware.js';
-import potionsService from '../services/potion.service.js';
+import { findAllPotionsService } from '../services/potion.service.js';
 
 export const findAllPotionsController = async (req, res) => {
-  const potions =  await potionsService.findAllPotionsService();
+  const potions =  await findAllPotionsService();
 
   if(potions.lenght == 0){
     return res.status(400).send({ message: 'Não existem poções cadastradas' })
