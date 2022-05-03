@@ -13,7 +13,7 @@ export const validId = (req, res, next) => {
 export const validObjectBody = (req, res, next) => {
   const potion = req.body;
 
-  if (!potion || !potion.titulo || !potion.sinopse || !potion.img || !potion.ano) {
+  if (!potion || !potion.nome || !potion.descricao || !potion.img || !potion.valor) {
     return res.status(400).send({
       message:
         'Você não preencheu todos os dados para adicionar uma nova poção ao catálogo!',

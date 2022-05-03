@@ -45,7 +45,7 @@
         }
       }
     },
-    "/potion/{id}": {
+    "/one-potion/{id}": {
       "get": {
         "summary": "Busca uma poção pelo ID",
         "description": "Rota responsável por buscar uma poção pelo ID",
@@ -282,19 +282,19 @@
   },
   "components": {
     "schemas": {
-      "movies": {
+      "potions": {
         "type": "object",
         "properties": {
-          "titulo": {
+          "nome": {
             "type": "string"
           },
-          "sinopse": {
+          "descricao": {
             "type": "string"
           },
           "img": {
             "type": "string"
           },
-          "ano": {
+          "valor": {
             "type": "number"
           }
         }
@@ -302,7 +302,7 @@
       "Carrinho": {
         "type": "object",
         "properties": {
-          "movieId": {
+          "potionId": {
             "type": "string"
           },
           "quantidade": {
