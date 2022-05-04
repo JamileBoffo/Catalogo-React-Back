@@ -4,7 +4,7 @@ const localUrl = 'mongodb://localhost:27017/potions-db'
 
 export function connectToDatabase() {
   mongoose
-    .connect(`${remoteUrl}`, {
+    .connect(process.env.URI_DATABASE, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
