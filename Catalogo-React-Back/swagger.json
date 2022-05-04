@@ -231,11 +231,11 @@
                 "Carrinho": {
                   "value": [
                     {
-                      "movieId": "624230fdcd38269205c82197",
+                      "potionId": "624230fdcd38269205c82197",
                       "quantidade": 5
                     },
                     {
-                      "movieId": "62423c1e618f4a4738a5ee75",
+                      "potionId": "62423c1e618f4a4738a5ee75",
                       "quantidade": 2
                     }
                   ]
